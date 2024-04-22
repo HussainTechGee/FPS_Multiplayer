@@ -1,0 +1,11 @@
+Library/
+Logs/
+Temp/
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
+FPS_Multiplayer.sln
+Toolbox.csproj
+Toolbox.Editor.csproj
+Toolbox.Editor.Tests.csproj
+Toolbox.Tests.csproj
+.vsconfig
