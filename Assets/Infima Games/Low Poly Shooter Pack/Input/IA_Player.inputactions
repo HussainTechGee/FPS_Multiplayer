@@ -294,9 +294,9 @@
                 {
                     "name": "",
                     "id": "b85d03ba-6afe-4100-9072-d7bb950e8849",
-                    "path": "<Pointer>/delta",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=0.05,y=0.05)",
+                    "processors": "ScaleVector2(x=3,y=3)",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,
