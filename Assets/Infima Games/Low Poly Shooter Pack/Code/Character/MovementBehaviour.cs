@@ -1,13 +1,13 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
 using UnityEngine;
-
+using Fusion;
 namespace InfimaGames.LowPolyShooterPack
 {
     /// <summary>
     /// Abstract movement class. Handles interactions with the main movement component.
     /// </summary>
-    public abstract class MovementBehaviour : MonoBehaviour
+    public abstract class MovementBehaviour : NetworkBehaviour
     {
         #region UNITY
 
@@ -30,6 +30,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// Fixed Update.
         /// </summary>
         protected virtual void FixedUpdate(){}
+        protected virtual void FixedUpdateNetwork() { }
 
         /// <summary>
         /// Late Update.

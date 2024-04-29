@@ -2,14 +2,14 @@
 
 using System.Collections;
 using UnityEngine;
-
+using Fusion;
 namespace InfimaGames.LowPolyShooterPack
 {
     /// <summary>
     /// Movement. This is our main, and base, component that handles the character's movement.
     /// It contains all of the logic relating to moving, running, crouching, jumping...etc
     /// </summary>
-    public class Movement : MovementBehaviour
+    public class Movement :MovementBehaviour
     {
         #region FIELDS SERIALIZED
         
@@ -113,6 +113,7 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         private float rigidbodyPushForce = 1.0f;
 
+      //  private Fusio playerMoveScript;
         #endregion
 
         #region FIELDS
@@ -185,30 +186,73 @@ namespace InfimaGames.LowPolyShooterPack
             //Save the default height.
             standingHeight = controller.height;
         }
+        Vector2 moveVector=Vector2.zero;
 
+        //public override void Spawned()
+        //{
+        //    Debug.Log("Shahid Out");
+        //   // if (HasInputAuthority)
+        //    {
+        //        playerCamera.SetActive(true);
+        //        Debug.Log("Shahid Movement In");
+        //    }
+        //}
+        //protected override void Update()
+        //{
+            //Vector2 moveDirection = Vector2.zero;
+            //UnityEngine.InputSystem.Keyboard keyboard = UnityEngine.InputSystem.Keyboard.current;
+            //if (keyboard.wKey.isPressed)
+            //    moveDirection += Vector2.up;
+            //if (keyboard.sKey.isPressed)
+            //    moveDirection += Vector2.down;
+            //if (keyboard.aKey.isPressed)
+            //    moveDirection += Vector2.left;
+            //if (keyboard.dKey.isPressed)
+            //    moveDirection += Vector2.right;
+            //moveVector = moveDirection;
+      //  }
+        //public NetworkInputData GetNetworkInput()
+        //{
+        //    NetworkInputData networkInputData = new NetworkInputData();
+        //    networkInputData.movementInput = moveVector;
+        //    return networkInputData;
+        //}    
         /// Moves the camera to the character, processes jumping and plays sounds every frame.
         protected override void Update()
         {
-            //Get the equipped weapon!
-            equippedWeapon = playerCharacter.GetInventory().GetEquipped();
-
-            //Get this frame's grounded value.
-            isGrounded = IsGrounded();
-            //Check if it has changed from last frame.
-            if (isGrounded && !wasGrounded)
+            if (!HasInputAuthority)
             {
-                //Set jumping.
-                jumping = false;
-                //Set lastJumpTime.
-                lastJumpTime = 0.0f;
+                return;
             }
-            else if (wasGrounded && !isGrounded)
-                lastJumpTime = Time.time;
-            
-            //Move.
-            MoveCharacter();
-            //Save the grounded value to check for difference next frame.
-            wasGrounded = isGrounded;
+            // if (GetInput(out NetworkInputData networkInputData))
+            {
+                //   Vector3 move
+                //Get the equipped weapon!
+                equippedWeapon = playerCharacter.GetInventory().GetEquipped();
+
+                //Get this frame's grounded value.
+                isGrounded = IsGrounded();
+                //Check if it has changed from last frame.
+                if (isGrounded && !wasGrounded)
+                {
+                    //Set jumping.
+                    jumping = false;
+                    //Set lastJumpTime.
+                    lastJumpTime = 0.0f;
+                }
+                else if (wasGrounded && !isGrounded)
+                    lastJumpTime = Time.time;
+
+                //Move.
+                MoveCharacter();
+                //Save the grounded value to check for difference next frame.
+                wasGrounded = isGrounded;
+            }
+            //if (HasStateAuthority == false)
+            //{
+            //    return;
+            //}
+          
         }
         /// <summary>
         /// OnControllerColliderHit.
@@ -300,8 +344,9 @@ namespace InfimaGames.LowPolyShooterPack
             if (controller.isGrounded && !jumping)
                 applied.y = -stickToGroundForce;
 
+         //   FusionConnection.instance.currentPos = applied;
             //Move.
-            controller.Move(applied);
+           // controller.Move(applied);
         }
 
         /// <summary>

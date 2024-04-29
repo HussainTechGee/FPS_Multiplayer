@@ -9,3 +9,4 @@ Toolbox.Editor.csproj
 Toolbox.Editor.Tests.csproj
 Toolbox.Tests.csproj
 .vsconfig
+obj/
