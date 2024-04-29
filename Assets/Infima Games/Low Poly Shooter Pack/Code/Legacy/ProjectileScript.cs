@@ -2,10 +2,10 @@
 
 using UnityEngine;
 using System.Collections;
-
+using Fusion;
 namespace InfimaGames.LowPolyShooterPack.Legacy
 {
-	public class ProjectileScript : MonoBehaviour
+	public class ProjectileScript : NetworkBehaviour
 	{
 
 		private bool explodeSelf;
@@ -70,7 +70,7 @@ namespace InfimaGames.LowPolyShooterPack.Legacy
 			StartCoroutine(DestroyTimer());
 		}
 
-		private void FixedUpdate()
+        public override void FixedUpdateNetwork()
 		{
 			//Rotates the projectile according to the direction it is going
 			if (GetComponent<Rigidbody>().velocity != Vector3.zero)

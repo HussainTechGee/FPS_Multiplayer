@@ -220,10 +220,10 @@ namespace InfimaGames.LowPolyShooterPack
         /// Moves the camera to the character, processes jumping and plays sounds every frame.
         protected override void Update()
         {
-            if (!HasInputAuthority)
-            {
-                return;
-            }
+            //if (!HasInputAuthority)
+            //{
+            //    return;
+            //}
             // if (GetInput(out NetworkInputData networkInputData))
             {
                 //   Vector3 move
@@ -346,7 +346,7 @@ namespace InfimaGames.LowPolyShooterPack
 
          //   FusionConnection.instance.currentPos = applied;
             //Move.
-           // controller.Move(applied);
+            controller.Move(applied);
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
 using UnityEngine;
+using Fusion;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -449,7 +450,7 @@ namespace InfimaGames.LowPolyShooterPack
                 spreadValue = playerCamera.TransformDirection(spreadValue);
 
                 //Spawn projectile from the projectile spawn point.
-                GameObject projectile = Instantiate(prefabProjectile, playerCamera.position, Quaternion.Euler(playerCamera.eulerAngles + spreadValue));
+                GameObject projectile = Runner.Spawn(prefabProjectile, playerCamera.position, Quaternion.Euler(playerCamera.eulerAngles + spreadValue),Object.InputAuthority).gameObject;
                 //Add velocity to the projectile.
                 projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileImpulse;
             }
